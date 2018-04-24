@@ -35,7 +35,7 @@ if (isset($_SESSION['usuario'])) {//Por si ya se hizo sesión anteriormente
     <body>
         <header>
 	    <?php
-	        include 'include/generic_header.php';
+	        include 'include/generic_header2.php';
 	    ?>
         </header>
         <label>/n</label>
