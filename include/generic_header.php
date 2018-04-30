@@ -1,3 +1,6 @@
+<div class="navbar">
+    <img src="images/favicon3.png" alt="AntioquiaMide" width="250px"/>
+</div>
 <?php
     $usuario="Inicie Sesion";
     $bandera=False;
@@ -13,6 +16,4 @@
     echo "</div>";
 ?>
 
-<div align="center">
-    <img src="images/favicon2.png" alt="AntioquiaMide"/>
-</div>
+
