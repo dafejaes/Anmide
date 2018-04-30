@@ -14,7 +14,7 @@ include 'include/generic_validate_session.php';
         </header>
         <section id="section_wrap">
             <div class="container">
-		<?php $_ACTIVE_SIDEBAR = ''; include 'include/generic_navbar.php'; ?>
+		        <?php $_ACTIVE_SIDEBAR = ''; include 'include/generic_navbar.php'; ?>
             </div>
 	    <div class="container" style="height: 300px; margin: 0 auto !important; text-align: center;">
 		<br><br>
