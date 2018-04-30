@@ -6,7 +6,7 @@
 <title>Metrología::Universidad de Antioquia</title>
 <!--styles-->
 <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
-<link rel="stylesheet" type="text/css" href="css/app.css" />
+<link rel="stylesheet" type="text/css" href="css/app.css"
 <link rel="stylesheet" type="text/css" href="css/global.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
 <link rel="stylesheet" media="screen" href="css/sunny/jquery-ui-1.10.2.custom.min.css" type="text/css" />
