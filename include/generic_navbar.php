@@ -23,14 +23,14 @@
         <ul class="nav pull-right">
             <li><a href="logout.php">Salir</a></li>
             <li class="divider-vertical"></li>
-<!--            <li class="dropdown">
+            <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mi cuenta <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="#">Editar cuenta</a></li>
                     <li class="divider"></li>
-                    <li><a href="#">Cerrar Sesión</a></li>
+                    <li><a href="logout.php">Cerrar Sesión</a></li>
                 </ul>
-            </li>-->
+            </li>
         </ul>
     </div>
 </div>
