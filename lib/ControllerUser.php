@@ -82,13 +82,13 @@ class ControllerUser {
             if ($this->id > 0) {
                 //se verifica que el email está disponible
                 $q = "SELECT usr_id FROM dmt_usuario WHERE usr_email = '" . $this->email . "' AND usr_id != $this->id ";
-                $con = mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
-                $resultado = mysql_num_rows($con);
+                $con = mysqli_query($this->conexion,$q) or die(mysqli_error() . "***ERROR: " . $q);
+                $resultado = mysqli_num_rows($con);
                 if ($resultado == 0) {
                     //actualiza la informacion
                     $q = "SELECT usr_id FROM dmt_usuario WHERE usr_id = " . $this->id;
-                    $con = mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
-                    while ($obj = mysql_fetch_object($con)) {
+                    $con = mysqli_query($this->conexion,$q) or die(mysql_error() . "***ERROR: " . $q);
+                    while ($obj = mysqli_fetch_object($con)) {
                         $id = $obj->usr_id;
                         if (strlen($this->pass) > 2) {
                             $pass = $this->UTILITY->make_hash_pass($this->email, $this->pass);
@@ -109,7 +109,7 @@ class ControllerUser {
                             'usr_direccion' => $this->direccion);
                         $arrfieldsnocomma = array('dmt_cliente_cli_id' => $this->idcli,'usr_dtcreate' => $this->UTILITY->date_now_server(), 'usr_habilitado' => $this->habilitado);
                         $q = $this->UTILITY->make_query_update($table, "usr_id = '$id'", $arrfieldscomma, $arrfieldsnocomma);
-                        mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+                        mysqli_query($this->conexion,$q) or die(mysqli_error() . "***ERROR: " . $q);
                         $arrjson = array('output' => array('valid' => true, 'id' => $id));
                     }
                 } else {
@@ -118,16 +118,16 @@ class ControllerUser {
             } else {
                 //se verifica que el email está disponible
                 $q = "SELECT usr_id FROM dmt_usuario WHERE usr_email = '" . $this->email . "'";
-                $con = mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
-                $resultado = mysql_num_rows($con);
+                $con = mysqli_query($this->conexion,$q) or die(mysqli_error() . "***ERROR: " . $q);
+                $resultado = mysqli_num_rows($con);
                 if ($resultado == 0) {
                     if (strlen($this->pass) > 2) {
                         $pass = $this->UTILITY->make_hash_pass($this->email, $this->pass);
                     }
                     $this->pass = $pass;
                     $q = "INSERT INTO dmt_usuario (usr_dtcreate, dmt_cliente_cli_id, usr_habilitado, usr_nombre, usr_apellido, usr_cargo, usr_email, usr_pass, usr_identificacion, usr_celular, usr_telefono, usr_pais, usr_departamento, usr_ciudad, usr_direccion) VALUES (" . $this->UTILITY->date_now_server() . ", $this->idcli, $this->habilitado, '$this->nombre', '$this->apellido', '$this->cargo', '$this->email', '$this->pass', '$this->identificacion', '$this->celular', '$this->telefono', '$this->pais', '$this->departamento', '$this->ciudad', '$this->direccion')";
-                    mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
-                    $id = mysql_insert_id();
+                    mysqli_query($this->conexion,$q) or die(mysqli_error() . "***ERROR: " . $q);
+                    $id = mysqli_insert_id();
                     $arrjson = array('output' => array('valid' => true, 'id' => $id));
                 } else {
                     $arrjson = $this->UTILITY->error_user_already_exist();
@@ -148,10 +148,10 @@ class ControllerUser {
         //if ($this->euid > 0) {
         //    $q = "SELECT * FROM fir_usuario WHERE fir_empresa_emp_id = " . $this->euid;
         //}
-        $con = mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
-        $resultado = mysql_num_rows($con);
+        $con = mysqli_query($this->conexion,$q) or die(mysqli_error() . "***ERROR: " . $q);
+        $resultado = mysqli_num_rows($con);
         $arr = array();
-        while ($obj = mysql_fetch_object($con)) {
+        while ($obj = mysqli_fetch_object($con)) {
             $arr[] = array(
                 'id' => $obj->usr_id,
                 'idcli' => $obj->dmt_cliente_cli_id,
@@ -181,7 +181,7 @@ class ControllerUser {
         if ($this->id > 0) {
             //actualiza la informacion
             $q = "DELETE FROM dmt_usuario WHERE usr_id = " . $this->id;
-            mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+            mysqli_query($this->conexion,$q) or die(mysqli_error() . "***ERROR: " . $q);
             $arrjson = array('output' => array('valid' => true, 'id' => $this->id));
         } else {
             $arrjson = $this->UTILITY->error_missing_data();
@@ -202,23 +202,23 @@ class ControllerUser {
             } else {
                 $pass = $this->UTILITY->make_hash_pass($this->email, $this->pass);
                 $q = "SELECT * FROM dmt_usuario WHERE usr_email = '$this->email' AND usr_pass = '$pass' AND usr_habilitado = 1";
-                $con = mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
-                $resultado = mysql_num_rows($con);
-                while ($obj = mysql_fetch_object($con)) {
+                $con = mysqli_query($this->conexion,$q) or die(mysqli_error() . "***ERROR: " . $q);
+                $resultado = mysqli_num_rows($con);
+                while ($obj = mysqli_fetch_object($con)) {
                     $q2 = "SELECT cli_id, cli_nombre FROM dmt_cliente WHERE cli_id = " . $obj->dmt_cliente_cli_id;
-                    $con2 = mysql_query($q2, $this->conexion) or die(mysql_error() . "***ERROR: " . $q2);
+                    $con2 = mysqli_query($this->conexion,$q2) or die(mysqli_error() . "***ERROR: " . $q2);
                     $cliente = '0';
                     $clientenombre = 'ninguno';
-                    while ($obj2 = mysql_fetch_object($con2)) {
+                    while ($obj2 = mysqli_fetch_object($con2)) {
                         $cliente = $obj2->cli_id;
                         $clientenombre = $obj2->cli_nombre;
                     }
 
                     //se consultan los perfiles asignados
                     $q3 = "SELECT dmt_perfiles_prf_id FROM dmt_usuario_has_dmt_perfiles WHERE dmt_usuario_usr_id = $obj->usr_id ORDER BY dmt_perfiles_prf_id ASC";
-                    $con3 = mysql_query($q3, $this->conexion) or die(mysql_error() . "***ERROR: " . $q3);
+                    $con3 = mysqli_query($this->conexion,$q3) or die(mysqli_error() . "***ERROR: " . $q3);
                     $arrassigned = array();
-                    while ($obj3 = mysql_fetch_object($con3)) {
+                    while ($obj3 = mysqli_fetch_object($con3)) {
                         $arrassigned[] = ($obj3->dmt_perfiles_prf_id);
                     }
                     $arrjson = array('output' => array(
@@ -252,16 +252,16 @@ class ControllerUser {
     private function usrprfget() {
         //se consultan los perfiles asignados
         $q = "SELECT * FROM dmt_usuario_has_dmt_perfiles WHERE dmt_usuario_usr_id = $this->id ORDER BY dmt_perfiles_prf_id ASC";
-        $con = mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+        $con = mysqli_query($this->conexion,$q) or die(mysqli_error() . "***ERROR: " . $q);
         $arrassigned = array();
         $arravailable = array();
-        while ($obj = mysql_fetch_object($con)) {
+        while ($obj = mysqli_fetch_object($con)) {
             $arrassigned[] = array('id' => $obj->dmt_perfiles_prf_id);
         }
         //se consultan los perfiles disponibles
         $q = "SELECT * FROM dmt_perfiles ORDER BY prf_nombre ASC";
-        $con = mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
-        while ($obj = mysql_fetch_object($con)) {
+        $con = mysqli_query($this->conexion,$q) or die(mysqli_error() . "***ERROR: " . $q);
+        while ($obj = mysqli_fetch_object($con)) {
             $arravailable[] = array(
                 'id' => $obj->prf_id,
                 'nombre' => $obj->prf_nombre,
@@ -276,13 +276,13 @@ class ControllerUser {
         if ($this->id > 0) {
             //actualiza la informacion
             $q = "DELETE FROM dmt_usuario_has_dmt_perfiles WHERE dmt_usuario_usr_id = " . $this->id;
-            mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+            mysqli_query($this->conexion, $q) or die(mysqli_error() . "***ERROR: " . $q);
             $arrchk = explode('-', $this->chk);
             for ($i = 0; $i < count($arrchk); $i++) {
                 $prf_id = intval($arrchk[$i]);
                 if ($prf_id > 0) {
                     $q = "INSERT INTO dmt_usuario_has_dmt_perfiles (dmt_usuario_usr_id, dmt_perfiles_prf_id, dtcreate) VALUES ($this->id, $prf_id, " . $this->UTILITY->date_now_server() . ")";
-                    mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+                    mysqli_query($this->conexion,$q) or die(mysqli_error() . "***ERROR: " . $q);
                 }
             }
             $arrjson = array('output' => array('valid' => true, 'id' => $this->id));

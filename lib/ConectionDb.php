@@ -27,11 +27,11 @@ class ConectionDb {
      * Establece la connexion con la base de datos
      */
     public function openConect() {
-	$this->connection = mysql_connect($this->host, $this->user, $this->pass);
+	$this->connection = mysqli_connect($this->host, $this->user, $this->pass);
 	if (!$this->connection) {
 	    throw new Exception("No fue posible conectarse al servidor MySQL");
 	}
-	if (!mysql_select_db($this->db, $this->connection)) {
+	if (!mysqli_select_db($this->connection,$this->db)) {
 	    throw new Exception("No se puede seleccionar la base de datos $this->db");
 	}
 	return $this->connection;
@@ -41,7 +41,7 @@ class ConectionDb {
      * Cierra la conexion con la base de datos
      */
     public function closeConect() {
-	mysql_close($this->connection);
+	mysqli_close($this->connection);
     }
 
     public function getServerDate() {
