@@ -51,3 +51,23 @@ CREATE TABLE `dmt_usuario_has_dmt_perfiles` (
   `dtcreate` datetime NOT NULL,
   PRIMARY KEY  (`dmt_usuario_usr_id`,`dmt_perfiles_prf_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `dmt_images` (
+  `img_usuario_id` int(11) NOT NULL,
+  `img_nombre` varchar(45) NOT NULL,
+  PRIMARY KEY (`img_usuario_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `dmt_cer_ent` (
+  `cer_ent_usr_id` int(11) NOT NULL,
+  `cer_ent_cli_id` int(11) NOT NULL,
+  `cer_ent_nombre` varchar(45) NOT NULL,
+  PRIMARY KEY (`cer_ent_usr_id`,`cer_ent_cli_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `dmt_cer_met` (
+  `cer_met_usr_id` int(11) NOT NULL,
+  `cer_met_cli_id` int(11) NOT NULL,
+  `cer_met_nombre` varchar(45) NOT NULL,
+  PRIMARY KEY (`cer_met_usr_id`,`cer_met_cli_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Clase para conectar a la base de datos
- * @author Camilo Garzon Calle
- * @copyright Secuencia24
- * @version 1.0
- */
 class ConectionDb {
 
     private $host, $user, $pass, $db, $connection, $server_date;
