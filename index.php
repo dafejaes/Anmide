@@ -41,7 +41,6 @@ if (isset($_SESSION['usuario'])) {//Por si ya se hizo sesión anteriormente
 	        include 'include/generic_header2.php';//Se incluye el header especifico para el index
 	    ?>
         </header>
-        <label></label>
         <!--Recuadro de Inición de sesión-->
 	    <section id="section_wrap">
 	        <form class="form-actions" style="margin: 0 auto !important; width: 220px;" action="index.php" method="POST">

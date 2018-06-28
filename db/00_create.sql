@@ -16,6 +16,7 @@ CREATE TABLE `dmt_usuario` (
   `usr_departamento` varchar(100) default NULL,
   `usr_ciudad` varchar(100) default NULL,
   `usr_direccion` varchar(100) default NULL,
+  `usr_imagen` varchar(100) default NULL,
   PRIMARY KEY  (`usr_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -50,12 +51,6 @@ CREATE TABLE `dmt_usuario_has_dmt_perfiles` (
   `dmt_perfiles_prf_id` int(11) NOT NULL,
   `dtcreate` datetime NOT NULL,
   PRIMARY KEY  (`dmt_usuario_usr_id`,`dmt_perfiles_prf_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `dmt_images` (
-  `img_usuario_id` int(11) NOT NULL,
-  `img_nombre` varchar(45) NOT NULL,
-  PRIMARY KEY (`img_usuario_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `dmt_cer_ent` (

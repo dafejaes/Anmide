@@ -33,19 +33,19 @@ $arrusuarios = $arrusuarios['output']['response'];
         </header>
         <section id="section_wrap">
             <div class="container">
-		<?php
-		$_ACTIVE_SIDEBAR = 'usuario';
-		include 'include/generic_navbar.php';
-		?>
+		        <?php
+		        $_ACTIVE_SIDEBAR = 'usuario';
+		        include 'include/generic_navbar.php';
+		        ?>
             </div>
             <div class="container">
-		<?php
-		if ($create) {
-		    ?>
+		        <?php
+		        if ($create) {
+		            ?>
                     <a href="#" id="crearusuario" class="btn btn-info botoncrear">Crear</a>
-		    <?php
-		}
-		?>
+		        <?php
+		        }
+		        ?>
                 <div>
                     <table class="table table-hover dyntable" id="dynamictable">
                         <thead>
@@ -66,40 +66,40 @@ $arrusuarios = $arrusuarios['output']['response'];
                         </colgroup>
 <!--                                    <td class="con0"><a href="#" onclick="editdata();"><span class="ui-icon ui-icon-pencil"></span></a><a href="#"><span class="ui-icon ui-icon-trash"></span></a></td>-->
                         <tbody>
-			    <?php
-			    $c = count($arrusuarios);
-			    if ($isvalid) {
-				for ($i = 0; $i < $c; $i++) {
-				    ?>
-				    <tr class="gradeC">
-					<td class="con0">
-					    <?php
-					    if ($delete) {
-						?>
-	    				    <a href="#" onclick="USUARIO.editdata(<?php echo $arrusuarios[$i]['id']; ?>);"><span class="icon-pencil"></span></a><span>&nbsp;&nbsp;</span>
-						<?php
-					    }
-					    if ($edit) {
-						?>
-	    				    <a href="#" onclick="USUARIO.deletedata(<?php echo $arrusuarios[$i]['id']; ?>);"><span class="icon-trash"></span></a><span>&nbsp;&nbsp;</span>
-						<?php
-					    }
-					    if ($editpermission) {
-						?>
-	    				    <a href="#" onclick="USUARIO.editpermission(<?php echo $arrusuarios[$i]['id']; ?>);"><span class="icon-ban-circle"></span></a>
-						<?php
-					    }
-					    ?>
-					</td>
-					<td class="con1"><?php echo $arrusuarios[$i]['nombre'] . ' ' . $arrusuarios[$i]['apellido']; ?></td>
-					<td class="con0"><?php echo $arrusuarios[$i]['email']; ?></td>
-					<td class="con1"><?php echo $arrusuarios[$i]['telefono'] . ' / ' . $arrusuarios[$i]['celular']; ?></td>
-					<td class="con0"><?php echo $arrusuarios[$i]['pais']; ?></td>
-				    </tr>
-				    <?php
-				}
-			    }
-			    ?>
+			                <?php
+			                    $c = count($arrusuarios);
+			                    if ($isvalid) {
+				                    for ($i = 0; $i < $c; $i++) {
+				            ?>
+				            <tr class="gradeC">
+                                <td class="con0">
+					                <?php
+					                    if ($delete) {
+						            ?>
+	    				            <a href="#" onclick="USUARIO.editdata(<?php echo $arrusuarios[$i]['id']; ?>);"><span class="icon-pencil"></span></a><span>&nbsp;&nbsp;</span>
+						            <?php
+					                    }
+					                    if ($edit) {
+						            ?>
+	    				            <a href="#" onclick="USUARIO.deletedata(<?php echo $arrusuarios[$i]['id']; ?>);"><span class="icon-trash"></span></a><span>&nbsp;&nbsp;</span>
+						            <?php
+					                    }
+					                    if ($editpermission) {
+						            ?>
+	    				            <a href="#" onclick="USUARIO.editpermission(<?php echo $arrusuarios[$i]['id']; ?>);"><span class="icon-ban-circle"></span></a>
+						            <?php
+					                    }
+					                ?>
+					            </td>
+					            <td class="con1"><?php echo $arrusuarios[$i]['nombre'] . ' ' . $arrusuarios[$i]['apellido']; ?></td>
+					            <td class="con0"><?php echo $arrusuarios[$i]['email']; ?></td>
+					            <td class="con1"><?php echo $arrusuarios[$i]['telefono'] . ' / ' . $arrusuarios[$i]['celular']; ?></td>
+					            <td class="con0"><?php echo $arrusuarios[$i]['pais']; ?></td>
+				            </tr>
+				            <?php
+				                    }
+			                    }
+			                ?>
                         </tbody>
                     </table>
                 </div>
@@ -116,9 +116,8 @@ $arrusuarios = $arrusuarios['output']['response'];
                         <form id="formcreate1" class="form-horizontal">
                             <div class="control-group">
                                 <label class="control-label">Pertenenece a</label>
-				<div class="controls">
-				    <select name="idcli" id="idcli" class="text ui-widget-content ui-corner-all">
-                                    </select>
+				                <div class="controls">
+				                    <select name="idcli" id="idcli" class="text ui-widget-content ui-corner-all"></select>
                                 </div>
                             </div>
                             <div class="control-group">
